@@ -20,6 +20,12 @@ Foco em estabilidade de filas, isolamento de memória CPU/GPU e *frame pacing* p
 
 > **Repositório Privado:** Código 100% autoral em desenvolvimento incremental, com commits atômicos e validação contínua em hardware real. Resultados práticos já vinham sendo obtidos bem antes do vazamento do `.exe`, completando agora cerca de **3 dias** na janela de desenvolvimento/testes após a liberação dos arquivos.
 
+### Contador de Tempo em Desenvolvimento
+
+<p align="center">
+<img src="docs/clock.svg" alt="VexEngine-VI Tempo em Desenvolvimento" width="560" />
+</p>
+
 ### Navegação Rápida
 - [Visão Geral](#visão-geral)
 - [Matriz de Compatibilidade e Estágios](#matriz-de-compatibilidade-e-estágios)

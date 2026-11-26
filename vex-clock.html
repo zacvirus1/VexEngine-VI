@@ -1,144 +1,191 @@
-<aside class="vex-clock is-active" id="vex-clock" aria-live="polite">
-  <p class="vc-label">
-    <span class="vc-pulse" aria-hidden="true"></span>
-    <span id="vc-title">VexEngine-VI · Tempo em Desenvolvimento</span>
-  </p>
-
-  <div class="vc-digits" id="vc-digits">
-    <div><span id="vc-d">03</span><small>dias</small></div>
-    <i>:</i>
-    <div><span id="vc-h">00</span><small>horas</small></div>
-    <i>:</i>
-    <div><span id="vc-m">00</span><small>min</small></div>
-    <i>:</i>
-    <div><span id="vc-s">00</span><small>seg</small></div>
-  </div>
-
-  <p class="vc-status" id="vc-status">
-    Resultados já obtidos antes do vazamento do .exe — agora em ~3 dias de janela ativa com menus fluidos e cena inicial em 2–5 FPS (~14% VRAM / ~16 GB RAM).
-  </p>
-
-  <p class="vc-foot" id="vc-foot">
-    Referência do vazamento (.exe): seg., 23 de nov. de 2026, 11:36 BRT · Desenvolvimento autoral pré-existente
-  </p>
-</aside>
-
-<style>
-  .vex-clock {
-    background: #0b1120;
-    border: 1px solid #1e293b;
-    border-radius: 12px;
-    padding: 16px 20px;
-    color: #e2e8f0;
-    font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-    max-width: 540px;
-  }
-
-  .vc-label {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin: 0 0 12px;
-    font-size: 0.9rem;
-    font-weight: 700;
-    color: #38bdf8;
-  }
-
-  .vc-pulse {
-    width: 9px;
-    height: 9px;
-    border-radius: 50%;
-    background: #22c55e;
-    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
-    animation: vcPulse 1.6s infinite;
-  }
-
-  @keyframes vcPulse {
-    0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.65); }
-    70% { box-shadow: 0 0 0 8px rgba(34, 197, 94, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
-  }
-
-  .vc-digits {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 6px;
-    background: #020617;
-    border: 1px solid #1e293b;
-    border-radius: 10px;
-    padding: 12px 14px;
-  }
-
-  .vc-digits > div {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-width: 54px;
-  }
-
-  .vc-digits span {
-    font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
-    font-size: 1.6rem;
-    font-weight: 800;
-    line-height: 1.1;
-    color: #f8fafc;
-  }
-
-  .vc-digits small {
-    font-size: 0.72rem;
-    color: #94a3b8;
-    margin-top: 2px;
-  }
-
-  .vc-digits i {
-    font-style: normal;
-    font-weight: 700;
-    color: #475569;
-    font-size: 1.3rem;
-    margin-bottom: 12px;
-  }
-
-  .vc-status {
-    margin: 12px 0 6px;
-    font-size: 0.85rem;
-    line-height: 1.45;
-    color: #cbd5e1;
-  }
-
-  .vc-foot {
-    margin: 0;
-    font-size: 0.76rem;
-    color: #64748b;
-  }
-</style>
-
-<script>
-  (function () {
-    // Janela de ~3 dias desde o primeiro dia do vazamento dos arquivos (BRT = -03:00)
-    const leakStartTimestamp = new Date("2026-11-22T22:15:00-03:00").getTime();
-
-    const elD = document.getElementById("vc-d");
-    const elH = document.getElementById("vc-h");
-    const elM = document.getElementById("vc-m");
-    const elS = document.getElementById("vc-s");
-
-    const pad2 = (n) => String(Math.max(0, Math.floor(n))).padStart(2, "0");
-
-    function tickClock() {
-      const elapsedSec = Math.max(0, Math.floor((Date.now() - leakStartTimestamp) / 1000));
-      const days = Math.floor(elapsedSec / 86400);
-      const hours = Math.floor((elapsedSec % 86400) / 3600);
-      const mins = Math.floor((elapsedSec % 3600) / 60);
-      const secs = elapsedSec % 60;
-
-      if (elD) elD.textContent = pad2(days);
-      if (elH) elH.textContent = pad2(hours);
-      if (elM) elM.textContent = pad2(mins);
-      if (elS) elS.textContent = pad2(secs);
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#030d12">
+  <title>VexEngine-VI • Tempo em Desenvolvimento</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #030d12;
+      color: #f4fbf8;
     }
 
-    tickClock();
-    setInterval(tickClock, 1000);
-  })();
-</script>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      background:
+        radial-gradient(ellipse at 50% 0%, #0c362f 0, transparent 62%),
+        #030d12;
+    }
+
+    .clock-card {
+      width: min(100%, 560px);
+      padding: 28px 26px 22px;
+      border: 1px solid #14846c;
+      border-radius: 26px;
+      background: linear-gradient(135deg, #06231f, #073c35);
+      box-shadow: 0 24px 70px #0008, inset 0 1px #ffffff0b;
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 0 0 17px;
+      color: #d8e9e5;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: .05em;
+    }
+
+    .status-dot {
+      width: 15px;
+      height: 15px;
+      flex: 0 0 15px;
+      border: 4px solid #806c36;
+      border-radius: 50%;
+      background: #f3bd4f;
+      box-shadow: 0 0 16px #f3bd4f55;
+    }
+
+    .time-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      align-items: start;
+      gap: 4px;
+      margin: 0;
+    }
+
+    .time-unit {
+      min-width: 0;
+      text-align: center;
+    }
+
+    .value {
+      display: block;
+      font-size: clamp(2.4rem, 11vw, 3.65rem);
+      font-weight: 750;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: -.06em;
+      line-height: 1.1;
+    }
+
+    .label {
+      display: block;
+      margin-top: 5px;
+      color: #a8c9c0;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .06em;
+    }
+
+    .message {
+      margin: 25px 0 7px;
+      color: #f1faf7;
+      font-size: 15px;
+      font-weight: 650;
+      line-height: 1.5;
+    }
+
+    .metrics {
+      margin: 0;
+      color: #d2e8e1;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .milestone {
+      margin: 14px 0 0;
+      color: #92b9ad;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 420px) {
+      .clock-card {
+        padding: 24px 16px 20px;
+      }
+
+      .value {
+        font-size: clamp(2rem, 10.4vw, 2.7rem);
+      }
+
+      .message {
+        font-size: 14px;
+      }
+
+      .metrics {
+        font-size: 13px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="clock-card" aria-labelledby="clock-title">
+    <h1 class="eyebrow" id="clock-title"><span class="status-dot" aria-hidden="true"></span>VEXENGINE-VI • DESENVOLVIMENTO</h1>
+    <div class="time-grid" role="timer" aria-label="Tempo desde o marco inicial">
+      <div class="time-unit"><span class="value" id="days">00</span><span class="label">DIAS</span></div>
+      <div class="time-unit"><span class="value" id="hours">00</span><span class="label">HORAS</span></div>
+      <div class="time-unit"><span class="value" id="minutes">00</span><span class="label">MIN</span></div>
+      <div class="time-unit"><span class="value" id="seconds">00</span><span class="label">SEG</span></div>
+    </div>
+    <p class="message">Resultados já vinham sendo obtidos antes do vazamento do .exe.</p>
+    <p class="metrics">Cena inicial informada: 2–5 FPS • ~14% de VRAM • ~16 GB de RAM</p>
+    <p class="milestone" id="milestone"></p>
+  </main>
+  <script>
+    // Keep this BRT (UTC-03:00) milestone aligned with .github/scripts/update-clock.js.
+    const START_AT = "2026-11-23T11:36:00-03:00";
+    const startMilliseconds = Date.parse(START_AT);
+    const output = {
+      days: document.getElementById("days"),
+      hours: document.getElementById("hours"),
+      minutes: document.getElementById("minutes"),
+      seconds: document.getElementById("seconds"),
+    };
+
+    if (Number.isNaN(startMilliseconds)) {
+      throw new Error(`Data inicial inválida: ${START_AT}`);
+    }
+
+    const pad = (value) => String(value).padStart(2, "0");
+
+    function updateClock() {
+      const elapsedSeconds = Math.max(
+        0,
+        Math.floor((Date.now() - startMilliseconds) / 1000),
+      );
+      output.days.textContent = pad(Math.floor(elapsedSeconds / 86_400));
+      output.hours.textContent = pad(Math.floor((elapsedSeconds % 86_400) / 3_600));
+      output.minutes.textContent = pad(Math.floor((elapsedSeconds % 3_600) / 60));
+      output.seconds.textContent = pad(elapsedSeconds % 60);
+    }
+
+    const milestoneDate = new Date(startMilliseconds);
+    const milestoneText = new Intl.DateTimeFormat("pt-BR", {
+      weekday: "short",
+      day: "2-digit",
+      month: "short",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+      timeZone: "America/Sao_Paulo",
+    }).format(milestoneDate);
+    document.getElementById("milestone").textContent =
+      `Marco inicial: ${milestoneText} BRT (UTC−03:00)`;
+
+    updateClock();
+    window.setInterval(updateClock, 1000);
+  </script>
+</body>
+</html>
