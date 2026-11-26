@@ -23,7 +23,7 @@ Foco em estabilidade de filas, isolamento de memória CPU/GPU e *frame pacing* p
 ### Contador de Tempo em Desenvolvimento
 
 <p align="center">
-<img src="docs/clock.svg" alt="VexEngine-VI Tempo em Desenvolvimento" width="560" />
+<img src="docs/clock.svg" alt="VexEngine-VI Tempo em Desenvolvimento" width="380" />
 </p>
 
 ### Navegação Rápida
