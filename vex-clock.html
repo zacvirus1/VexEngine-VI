@@ -1,0 +1,144 @@
+<aside class="vex-clock is-active" id="vex-clock" aria-live="polite">
+  <p class="vc-label">
+    <span class="vc-pulse" aria-hidden="true"></span>
+    <span id="vc-title">VexEngine-VI · Tempo em Desenvolvimento</span>
+  </p>
+
+  <div class="vc-digits" id="vc-digits">
+    <div><span id="vc-d">03</span><small>dias</small></div>
+    <i>:</i>
+    <div><span id="vc-h">00</span><small>horas</small></div>
+    <i>:</i>
+    <div><span id="vc-m">00</span><small>min</small></div>
+    <i>:</i>
+    <div><span id="vc-s">00</span><small>seg</small></div>
+  </div>
+
+  <p class="vc-status" id="vc-status">
+    Resultados já obtidos antes do vazamento do .exe — agora em ~3 dias de janela ativa com menus fluidos e cena inicial em 2–5 FPS (~14% VRAM / ~16 GB RAM).
+  </p>
+
+  <p class="vc-foot" id="vc-foot">
+    Referência do vazamento (.exe): seg., 23 de nov. de 2026, 11:36 BRT · Desenvolvimento autoral pré-existente
+  </p>
+</aside>
+
+<style>
+  .vex-clock {
+    background: #0b1120;
+    border: 1px solid #1e293b;
+    border-radius: 12px;
+    padding: 16px 20px;
+    color: #e2e8f0;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    max-width: 540px;
+  }
+
+  .vc-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 0 12px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #38bdf8;
+  }
+
+  .vc-pulse {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #22c55e;
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+    animation: vcPulse 1.6s infinite;
+  }
+
+  @keyframes vcPulse {
+    0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.65); }
+    70% { box-shadow: 0 0 0 8px rgba(34, 197, 94, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+  }
+
+  .vc-digits {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+    background: #020617;
+    border: 1px solid #1e293b;
+    border-radius: 10px;
+    padding: 12px 14px;
+  }
+
+  .vc-digits > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 54px;
+  }
+
+  .vc-digits span {
+    font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+    font-size: 1.6rem;
+    font-weight: 800;
+    line-height: 1.1;
+    color: #f8fafc;
+  }
+
+  .vc-digits small {
+    font-size: 0.72rem;
+    color: #94a3b8;
+    margin-top: 2px;
+  }
+
+  .vc-digits i {
+    font-style: normal;
+    font-weight: 700;
+    color: #475569;
+    font-size: 1.3rem;
+    margin-bottom: 12px;
+  }
+
+  .vc-status {
+    margin: 12px 0 6px;
+    font-size: 0.85rem;
+    line-height: 1.45;
+    color: #cbd5e1;
+  }
+
+  .vc-foot {
+    margin: 0;
+    font-size: 0.76rem;
+    color: #64748b;
+  }
+</style>
+
+<script>
+  (function () {
+    // Janela de ~3 dias desde o primeiro dia do vazamento dos arquivos (BRT = -03:00)
+    const leakStartTimestamp = new Date("2026-11-22T22:15:00-03:00").getTime();
+
+    const elD = document.getElementById("vc-d");
+    const elH = document.getElementById("vc-h");
+    const elM = document.getElementById("vc-m");
+    const elS = document.getElementById("vc-s");
+
+    const pad2 = (n) => String(Math.max(0, Math.floor(n))).padStart(2, "0");
+
+    function tickClock() {
+      const elapsedSec = Math.max(0, Math.floor((Date.now() - leakStartTimestamp) / 1000));
+      const days = Math.floor(elapsedSec / 86400);
+      const hours = Math.floor((elapsedSec % 86400) / 3600);
+      const mins = Math.floor((elapsedSec % 3600) / 60);
+      const secs = elapsedSec % 60;
+
+      if (elD) elD.textContent = pad2(days);
+      if (elH) elH.textContent = pad2(hours);
+      if (elM) elM.textContent = pad2(mins);
+      if (elS) elS.textContent = pad2(secs);
+    }
+
+    tickClock();
+    setInterval(tickClock, 1000);
+  })();
+</script>
