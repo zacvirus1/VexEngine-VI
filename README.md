@@ -25,6 +25,7 @@ Foco em estabilidade de filas, isolamento de memória CPU/GPU e *frame pacing* p
 - [Matriz de Compatibilidade e Estágios](#matriz-de-compatibilidade-e-estágios)
 - [Arquitetura](#arquitetura)
 - [Configuração](#configuração)
+- [Contador de Tempo em Desenvolvimento](#contador-de-tempo-em-desenvolvimento)
 - [Roadmap](#roadmap)
 - [Padrão de Commits e Notas Técnicas](#padrão-de-commits-e-notas-técnicas)
 
