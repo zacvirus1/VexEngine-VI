@@ -18,16 +18,18 @@ O **VexEngine-VI** está sendo construído de forma modular e autoral, priorizan
 
 ---
 
-## Estado Atual do Desenvolvimento
+## Matriz de Compatibilidade e Estágios
 
-| Componente / Etapa | Status | Observações |
-| :--- | :--- | :--- |
-| Inicialização de GPU (D3D12) | Estável | Dispositivo, filas e alocação base operacionais. |
-| Pipeline Básico de Shaders | Estável | Carregamento inicial validado. |
-| Tratamento de Watchdog (`0xC0000005`) | Em ajuste | Bypass inicial validado; foco atual na causa raiz de sincronização de filas. |
-| Renderização de Abertura | Em teste (Build 3) | Tela preta superada; imagem exibida, ajustando estabilidade de câmera/profundidade entre quadros. |
-| Desbloqueio Funcional de 60 FPS | Planejado | Será ativado após estabilização completa da imagem em 30 FPS. |
-| Integração com **VexLauncher** | Planejado | Estrutura preparada para futura interface dedicada de inicialização e configuração. |
+| Subsistema / Etapa | Status | Diagnóstico e Métricas Reais (RX 6650 XT / Xeon E5-2680 v4) |
+| :--- | :---: | :--- |
+| Memória Virtual e Alocação Base | **Funcional** | ~16 GB de RAM alocados sem vazamento crítico ou crash imediato. |
+| Inicialização de GPU (D3D12 / RDNA 2) | **Funcional** | Dispositivo, filas e apresentação operacionais. |
+| Tradução e Cache de Shaders | **Funcional** | Cache ativo em SSD NVMe; investigando impacto de compilação PSO em cena. |
+| Mitigação de Watchdog (`0xC0000005`) | **Funcional** | Processo estável sem encerramento forçado. |
+| Menus e Inicialização | **Funcional** | Navegação e apresentação fluidas. |
+| Início de Jogo / Renderização de Cena | **Em Otimização** | 2–5 FPS; ~14% de VRAM (~1,1 GB) e ~16 GB de RAM (gargalo de submissão/streaming na CPU). |
+| Streaming Assíncrono e Upload GPU | **Prioridade Atual** | Desbloquear transferência RAM → VRAM sem travar a thread principal. |
+| Modo Desbloqueado de 60 FPS | **Planejado** | Será validado após estabilizar o fluxo de cena em 30 FPS. |
 
 ---
 
