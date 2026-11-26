@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="560" height="300" viewBox="0 0 560 300" role="img" aria-labelledby="title description">
+  <title id="title">VexEngine-VI Tempo em Desenvolvimento</title>
+  <desc id="description">Tempo desde 23 de novembro de 2026 às 11:36 BRT. Resultados já vinham sendo obtidos antes do vazamento do executável. Cena inicial informada: 2 a 5 FPS, cerca de 14 por cento de VRAM e cerca de 16 GB de RAM.</desc>
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#06231f"/>
+      <stop offset="1" stop-color="#073c35"/>
+    </linearGradient>
+    <linearGradient id="border" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#10b981"/>
+      <stop offset="1" stop-color="#176f5d"/>
+    </linearGradient>
+  </defs>
+  <rect x="1" y="1" width="558" height="298" rx="26" fill="#030d12"/>
+  <rect x="18" y="18" width="524" height="264" rx="24" fill="url(#background)" stroke="url(#border)" stroke-width="1.5"/>
+  <circle cx="49" cy="55" r="8" fill="#f3bd4f"/>
+  <circle cx="49" cy="55" r="3.5" fill="#fff2b0"/>
+  <text x="66" y="61" fill="#d8e9e5" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="700" letter-spacing=".5">VEXENGINE-VI • DESENVOLVIMENTO</text>
+
+  <g fill="#f4fbf8" font-family="Segoe UI, Arial, sans-serif" font-size="54" font-weight="750" text-anchor="middle">
+    <text x="91" y="132">02</text>
+    <text x="217" y="132">10</text>
+    <text x="343" y="132">46</text>
+    <text x="469" y="132">50</text>
+  </g>
+  <g fill="#6ba99b" font-family="Segoe UI, Arial, sans-serif" font-size="36" font-weight="700" text-anchor="middle">
+    <text x="154" y="128">:</text>
+    <text x="280" y="128">:</text>
+    <text x="406" y="128">:</text>
+  </g>
+  <g fill="#a8c9c0" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="700" letter-spacing=".8" text-anchor="middle">
+    <text x="91" y="158">DIAS</text>
+    <text x="217" y="158">HORAS</text>
+    <text x="343" y="158">MIN</text>
+    <text x="469" y="158">SEG</text>
+  </g>
+
+  <text x="43" y="194" fill="#f1faf7" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="650">Resultados já vinham sendo obtidos antes do vazamento do .exe.</text>
+  <text x="43" y="220" fill="#d2e8e1" font-family="Segoe UI, Arial, sans-serif" font-size="14">Cena inicial informada: 2–5 FPS • ~14% de VRAM • ~16 GB de RAM</text>
+  <text x="43" y="252" fill="#92b9ad" font-family="Segoe UI, Arial, sans-serif" font-size="12">Marco inicial: 23 nov. 2026, 11:36 BRT (UTC−03:00)</text>
+</svg>

@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#030d12">
+  <title>VexEngine-VI • Tempo em Desenvolvimento</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #030d12;
+      color: #f4fbf8;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      background:
+        radial-gradient(ellipse at 50% 0%, #0c362f 0, transparent 62%),
+        #030d12;
+    }
+
+    .clock-card {
+      width: min(100%, 560px);
+      padding: 28px 26px 22px;
+      border: 1px solid #14846c;
+      border-radius: 26px;
+      background: linear-gradient(135deg, #06231f, #073c35);
+      box-shadow: 0 24px 70px #0008, inset 0 1px #ffffff0b;
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 0 0 17px;
+      color: #d8e9e5;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: .05em;
+    }
+
+    .status-dot {
+      width: 15px;
+      height: 15px;
+      flex: 0 0 15px;
+      border: 4px solid #806c36;
+      border-radius: 50%;
+      background: #f3bd4f;
+      box-shadow: 0 0 16px #f3bd4f55;
+    }
+
+    .time-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      align-items: start;
+      gap: 4px;
+      margin: 0;
+    }
+
+    .time-unit {
+      min-width: 0;
+      text-align: center;
+    }
+
+    .value {
+      display: block;
+      font-size: clamp(2.4rem, 11vw, 3.65rem);
+      font-weight: 750;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: -.06em;
+      line-height: 1.1;
+    }
+
+    .label {
+      display: block;
+      margin-top: 5px;
+      color: #a8c9c0;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .06em;
+    }
+
+    .message {
+      margin: 25px 0 7px;
+      color: #f1faf7;
+      font-size: 15px;
+      font-weight: 650;
+      line-height: 1.5;
+    }
+
+    .metrics {
+      margin: 0;
+      color: #d2e8e1;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .milestone {
+      margin: 14px 0 0;
+      color: #92b9ad;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 420px) {
+      .clock-card {
+        padding: 24px 16px 20px;
+      }
+
+      .value {
+        font-size: clamp(2rem, 10.4vw, 2.7rem);
+      }
+
+      .message {
+        font-size: 14px;
+      }
+
+      .metrics {
+        font-size: 13px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="clock-card" aria-labelledby="clock-title">
+    <h1 class="eyebrow" id="clock-title"><span class="status-dot" aria-hidden="true"></span>VEXENGINE-VI • DESENVOLVIMENTO</h1>
+    <div class="time-grid" role="timer" aria-label="Tempo desde o marco inicial">
+      <div class="time-unit"><span class="value" id="days">00</span><span class="label">DIAS</span></div>
+      <div class="time-unit"><span class="value" id="hours">00</span><span class="label">HORAS</span></div>
+      <div class="time-unit"><span class="value" id="minutes">00</span><span class="label">MIN</span></div>
+      <div class="time-unit"><span class="value" id="seconds">00</span><span class="label">SEG</span></div>
+    </div>
+    <p class="message">Resultados já vinham sendo obtidos antes do vazamento do .exe.</p>
+    <p class="metrics">Cena inicial informada: 2–5 FPS • ~14% de VRAM • ~16 GB de RAM</p>
+    <p class="milestone" id="milestone"></p>
+  </main>
+  <script>
+    // Keep this BRT (UTC-03:00) milestone aligned with .github/scripts/update-clock.js.
+    const START_AT = "2026-11-23T11:36:00-03:00";
+    const startMilliseconds = Date.parse(START_AT);
+    const output = {
+      days: document.getElementById("days"),
+      hours: document.getElementById("hours"),
+      minutes: document.getElementById("minutes"),
+      seconds: document.getElementById("seconds"),
+    };
+
+    if (Number.isNaN(startMilliseconds)) {
+      throw new Error(`Data inicial inválida: ${START_AT}`);
+    }
+
+    const pad = (value) => String(value).padStart(2, "0");
+
+    function updateClock() {
+      const elapsedSeconds = Math.max(
+        0,
+        Math.floor((Date.now() - startMilliseconds) / 1000),
+      );
+      output.days.textContent = pad(Math.floor(elapsedSeconds / 86_400));
+      output.hours.textContent = pad(Math.floor((elapsedSeconds % 86_400) / 3_600));
+      output.minutes.textContent = pad(Math.floor((elapsedSeconds % 3_600) / 60));
+      output.seconds.textContent = pad(elapsedSeconds % 60);
+    }
+
+    const milestoneDate = new Date(startMilliseconds);
+    const milestoneText = new Intl.DateTimeFormat("pt-BR", {
+      weekday: "short",
+      day: "2-digit",
+      month: "short",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+      timeZone: "America/Sao_Paulo",
+    }).format(milestoneDate);
+    document.getElementById("milestone").textContent =
+      `Marco inicial: ${milestoneText} BRT (UTC−03:00)`;
+
+    updateClock();
+    window.setInterval(updateClock, 1000);
+  </script>
+</body>
+</html>
