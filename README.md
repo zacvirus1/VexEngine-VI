@@ -10,12 +10,17 @@ Foco em estabilidade de filas, isolamento de memória CPU/GPU e *frame pacing* p
 ![Arch](https://img.shields.io/badge/Arch-x86--64-374151?style=for-the-badge)
 ![GPU](https://img.shields.io/badge/Target-AMD_RDNA_2-dc2626?style=for-the-badge)
 
+<br />
+
+<img src="docs/media/vex-pipeline-anim.svg" alt="Fluxo animado do pipeline VexEngine-VI" width="720" />
+
 </div>
 
 > **Repositório Privado:** Desenvolvimento incremental com commits atômicos, testes em hardware real e documentação contínua.
 
 ### Navegação Rápida
-- [Estado Atual](#estado-atual)
+- [Visão Geral](#visão-geral)
+- [Matriz de Compatibilidade e Estágios](#matriz-de-compatibilidade-e-estágios)
 - [Arquitetura](#arquitetura)
 - [Configuração](#configuração)
 - [Roadmap](#roadmap)
@@ -49,14 +54,18 @@ O **VexEngine-VI** está sendo construído de forma modular e autoral, priorizan
 
 ---
 
-## Estrutura Planejada do Repositório
+## Arquitetura
+
+O **VexEngine-VI** separa responsabilidades críticas para evitar bloqueios na thread principal de renderização e facilitar reversões rápidas em caso de regressão:
 
 ```text
 VexEngine-VI/
-├── core/        # Gerenciamento de memória, timers de alta precisão e threading
-├── gpu/         # Backend gráfico, filas assíncronas, fences e frame pacing
-├── shader/      # Tradução, cache persistente e compilação segura de PSOs
-├── io/          # Streaming assíncrono de assets e controle de readback
+├── core/        # Memória virtual, timers de alta precisão e controle de watchdog
+├── gpu/         # Backend gráfico, filas assíncronas, fences 64-bit e frame pacing
+├── shader/      # Tradução de shaders, cache persistente de PSOs e fallback seguro
+├── io/          # Streaming assíncrono de assets, controle de readback e VRAM
 ├── cli/         # Ponto de entrada e preparação para integração com VexLauncher
 ├── config/      # Arquivos de configuração (ex.: target_fps, caminhos de cache)
+├── docs/
+│   └── media/   # SVGs animados, capturas e GIFs de testes
 └── README.md    # Documentação técnica e registro de evolução
