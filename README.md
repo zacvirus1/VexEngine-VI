@@ -1,14 +1,24 @@
+<div align="center">
+
 # VexEngine-VI
 
-![Status](https://img.shields.io/badge/Status-Em_Desenvolvimento-yellow?style=for-the-badge)
-![Backend](https://img.shields.io/badge/Graphics-DirectX_12-0078D4?style=for-the-badge)
-![Arquitetura](https://img.shields.io/badge/Arch-x86--64-555555?style=for-the-badge)
-![Target](https://img.shields.io/badge/GPU_Target-AMD_RDNA_2-ED1C24?style=for-the-badge)
-![Build](https://img.shields.io/badge/Build-0.3.0--alpha-blue?style=for-the-badge)
+**Motor e camada de execução experimental de baixo nível (DirectX 12 / x86-64)**  
+Foco em estabilidade de filas, isolamento de memória CPU/GPU e *frame pacing* previsível.
 
-Motor e camada de execução experimental de baixo nível focado em estabilidade, baixa latência, gerenciamento assíncrono de GPU e controle preciso de *frame pacing*.
+![Status](https://img.shields.io/badge/Status-Em_Desenvolvimento-f59e0b?style=for-the-badge)
+![Graphics](https://img.shields.io/badge/Graphics-DirectX_12-0078D4?style=for-the-badge)
+![Arch](https://img.shields.io/badge/Arch-x86--64-374151?style=for-the-badge)
+![GPU](https://img.shields.io/badge/Target-AMD_RDNA_2-dc2626?style=for-the-badge)
 
-> **Status do Projeto:** Em desenvolvimento ativo (repositório privado para versionamento incremental e auditoria de estabilidade).
+</div>
+
+> **Repositório Privado:** Desenvolvimento incremental com commits atômicos, testes em hardware real e documentação contínua.
+
+### Navegação Rápida
+- [Estado Atual](#estado-atual)
+- [Arquitetura](#arquitetura)
+- [Configuração](#configuração)
+- [Roadmap](#roadmap)
 
 ---
 
