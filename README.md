@@ -9,14 +9,17 @@ Foco em estabilidade de filas, isolamento de memória CPU/GPU e *frame pacing* p
 ![Graphics](https://img.shields.io/badge/Graphics-DirectX_12-0078D4?style=for-the-badge)
 ![Arch](https://img.shields.io/badge/Arch-x86--64-374151?style=for-the-badge)
 ![GPU](https://img.shields.io/badge/Target-AMD_RDNA_2-dc2626?style=for-the-badge)
+![Build](https://img.shields.io/badge/Build-0.3.0--alpha-0ea5e9?style=for-the-badge)
 
 <br />
 
 <img src="docs/media/vex-pipeline-anim.svg" alt="Fluxo animado do pipeline VexEngine-VI" width="720" />
+<br />
+<img src="docs/media/vex-telemetry-anim.svg" alt="Telemetria animada de memória e FPS do VexEngine-VI" width="720" />
 
 </div>
 
-> **Repositório Privado:** Desenvolvimento incremental com commits atômicos, testes em hardware real e documentação contínua.
+> **Repositório Privado:** Código 100% autoral em desenvolvimento incremental, com commits atômicos e validação contínua em hardware real.
 
 ### Navegação Rápida
 - [Visão Geral](#visão-geral)
@@ -24,12 +27,13 @@ Foco em estabilidade de filas, isolamento de memória CPU/GPU e *frame pacing* p
 - [Arquitetura](#arquitetura)
 - [Configuração](#configuração)
 - [Roadmap](#roadmap)
+- [Padrão de Commits e Notas Técnicas](#padrão-de-commits-e-notas-técnicas)
 
 ---
 
 ## Visão Geral
 
-O **VexEngine-VI** está sendo construído de forma modular e autoral, priorizando previsibilidade na execução gráfica, isolamento de memória entre CPU e GPU e rastreabilidade completa de cada alteração via commits atômicos.
+O **VexEngine-VI** está sendo construído de forma modular e autoral, priorizando previsibilidade na execução gráfica, isolamento de memória entre CPU e GPU e rastreabilidade completa de cada alteração.
 
 ### Pilares Técnicos
 - **Execução Assíncrona de GPU:** Sincronização explícita de filas, *fences* de 64 bits e *frames in flight* para evitar bloqueios na thread de submissão e falhas de *watchdog*.
