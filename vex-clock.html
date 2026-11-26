@@ -3,12 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>VexEngine-VI · Tempo em Desenvolvimento</title>
+  <title>VexEngine-VI · Relógio ao Vivo</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
+    * { box-sizing: border-box; }
     body {
       margin: 0;
       min-height: 100vh;
@@ -18,210 +15,156 @@
       padding: 20px;
       font-family: "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
     }
-
-    .vex-clock-wrap {
+    .vex-card {
       width: 100%;
-      max-width: 520px;
-    }
-
-    .vex-clock-card {
-      background: linear-gradient(145deg, rgba(6, 35, 31, 0.92), rgba(7, 52, 46, 0.88));
-      border: 1px solid rgba(16, 185, 129, 0.28);
+      max-width: 540px;
+      background: linear-gradient(145deg, #06231f, #07342e);
+      border: 1px solid rgba(16, 185, 129, 0.35);
       border-radius: 18px;
-      padding: 18px 20px 16px;
-      color: #e6f3ef;
-      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+      padding: 18px 20px;
+      color: #eaf6f2;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
     }
-
-    .vex-clock-top {
+    .vex-top {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 14px;
-    }
-
-    .vex-clock-title {
-      display: flex;
-      align-items: center;
-      gap: 9px;
+      margin-bottom: 12px;
       font-size: 0.78rem;
       font-weight: 700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: #bfe3d8;
+      color: #c7e5dc;
     }
-
+    .vex-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
     .vex-dot {
       width: 8px;
       height: 8px;
       border-radius: 50%;
-      background: #34d399;
-      box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.55);
-      animation: pulseSubtle 2.4s infinite;
-      flex-shrink: 0;
+      background: #f59e0b;
+      box-shadow: 0 0 0 3px rgba(254, 243, 199, 0.25);
     }
-
-    @keyframes pulseSubtle {
-      0% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.45); }
-      70% { box-shadow: 0 0 0 7px rgba(52, 211, 153, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0); }
+    .vex-live {
+      font-size: 0.7rem;
+      color: #34d399;
+      letter-spacing: 0.06em;
     }
-
-    .vex-clock-tag {
-      font-size: 0.72rem;
-      color: #88b8aa;
-      white-space: nowrap;
-    }
-
-    .vex-timer-grid {
+    .vex-box {
       display: grid;
-      grid-template-columns: repeat(4, 1fr) auto repeat(0);
       grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
       align-items: center;
-      gap: 4px;
-      background: rgba(3, 13, 18, 0.55);
+      background: rgba(3, 13, 18, 0.58);
       border: 1px solid rgba(146, 185, 173, 0.14);
-      border-radius: 14px;
-      padding: 12px 10px;
-    }
-
-    .vex-unit {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      border-radius: 12px;
+      padding: 12px 8px;
       text-align: center;
     }
-
     .vex-num {
       font-variant-numeric: tabular-nums;
-      font-size: clamp(1.65rem, 4.5vw, 2.25rem);
+      font-size: clamp(1.75rem, 4.8vw, 2.4rem);
       font-weight: 700;
       line-height: 1.05;
       color: #f4fbf8;
-      letter-spacing: -0.02em;
     }
-
     .vex-lbl {
       margin-top: 4px;
       font-size: 0.68rem;
       font-weight: 700;
       letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: #96bdb2;
+      color: #8fb8ac;
     }
-
-    .vex-sep {
-      font-size: 1.45rem;
+    .vex-colon {
+      font-size: 1.5rem;
       font-weight: 600;
       color: rgba(146, 185, 173, 0.45);
       transform: translateY(-7px);
       user-select: none;
     }
-
-    .vex-notes {
-      margin-top: 14px;
-      padding-top: 12px;
+    .vex-foot {
+      margin-top: 12px;
+      padding-top: 10px;
       border-top: 1px solid rgba(146, 185, 173, 0.14);
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-
-    .vex-lead {
-      margin: 0;
-      font-size: 0.84rem;
-      font-weight: 600;
-      color: #eaf6f2;
-    }
-
-    .vex-metrics {
-      margin: 0;
       font-size: 0.78rem;
-      color: #b7d6cc;
+      line-height: 1.45;
+      color: #b6d5cb;
     }
-
-    .vex-origin {
-      margin: 2px 0 0;
+    .vex-foot strong {
+      display: block;
+      color: #f1faf7;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+    .vex-foot small {
+      display: block;
+      margin-top: 4px;
       font-size: 0.72rem;
-      color: #84ae9f;
+      color: #7fa89b;
     }
   </style>
 </head>
 <body>
-  <main class="vex-clock-wrap">
-    <aside
-      class="vex-clock-card"
-      id="vex-live-clock"
-      aria-live="polite"
-      aria-label="VexEngine-VI Tempo em Desenvolvimento"
-    >
-      <div class="vex-clock-top">
-        <div class="vex-clock-title">
-          <span class="vex-dot" aria-hidden="true"></span>
-          <span>VexEngine-VI · Desenvolvimento</span>
-        </div>
-        <span class="vex-clock-tag">Ao vivo</span>
+  <aside class="vex-card" aria-live="polite" aria-label="VexEngine-VI Tempo em Desenvolvimento">
+    <div class="vex-top">
+      <div class="vex-left">
+        <span class="vex-dot" aria-hidden="true"></span>
+        <span>VexEngine-VI · Desenvolvimento</span>
       </div>
+      <span class="vex-live">AO VIVO</span>
+    </div>
 
-      <div class="vex-timer-grid">
-        <div class="vex-unit">
-          <span class="vex-num" id="vc-days">00</span>
-          <span class="vex-lbl">Dias</span>
-        </div>
-        <span class="vex-sep" aria-hidden="true">:</span>
-        <div class="vex-unit">
-          <span class="vex-num" id="vc-hours">00</span>
-          <span class="vex-lbl">Horas</span>
-        </div>
-        <span class="vex-sep" aria-hidden="true">:</span>
-        <div class="vex-unit">
-          <span class="vex-num" id="vc-mins">00</span>
-          <span class="vex-lbl">Min</span>
-        </div>
-        <span class="vex-sep" aria-hidden="true">:</span>
-        <div class="vex-unit">
-          <span class="vex-num" id="vc-secs">00</span>
-          <span class="vex-lbl">Seg</span>
-        </div>
+    <div class="vex-box">
+      <div>
+        <div class="vex-num" id="d">00</div>
+        <div class="vex-lbl">DIAS</div>
       </div>
+      <div class="vex-colon" aria-hidden="true">:</div>
+      <div>
+        <div class="vex-num" id="h">00</div>
+        <div class="vex-lbl">HORAS</div>
+      </div>
+      <div class="vex-colon" aria-hidden="true">:</div>
+      <div>
+        <div class="vex-num" id="m">00</div>
+        <div class="vex-lbl">MIN</div>
+      </div>
+      <div class="vex-colon" aria-hidden="true">:</div>
+      <div>
+        <div class="vex-num" id="s">00</div>
+        <div class="vex-lbl">SEG</div>
+      </div>
+    </div>
 
-      <div class="vex-notes">
-        <p class="vex-lead">Resultados já vinham sendo obtidos antes do vazamento do .exe.</p>
-        <p class="vex-metrics">Cena inicial: 2–5 FPS · ~14% de VRAM · ~16 GB de RAM</p>
-        <p class="vex-origin">Marco inicial: 23 nov. 2026, 11:36 BRT (UTC−03:00)</p>
-      </div>
-    </aside>
-  </main>
+    <div class="vex-foot">
+      <strong>Resultados já vinham sendo obtidos antes do vazamento do .exe.</strong>
+      <span>Cena inicial informada: 2–5 FPS · ~14% de VRAM · ~16 GB de RAM</span>
+      <small>Marco inicial: 23 nov. 2026, 11:36 BRT (UTC−03:00)</small>
+    </div>
+  </aside>
 
   <script>
     (function () {
-      const startMs = new Date("2026-11-23T11:36:00-03:00").getTime();
+      const start = new Date("2026-11-23T11:36:00-03:00").getTime();
+      const dEl = document.getElementById("d");
+      const hEl = document.getElementById("h");
+      const mEl = document.getElementById("m");
+      const sEl = document.getElementById("s");
 
-      const elDays = document.getElementById("vc-days");
-      const elHours = document.getElementById("vc-hours");
-      const elMins = document.getElementById("vc-mins");
-      const elSecs = document.getElementById("vc-secs");
+      const pad = (n) => String(Math.max(0, Math.floor(n))).padStart(2, "0");
 
-      function pad(value) {
-        return String(Math.max(0, Math.floor(value))).padStart(2, "0");
+      function update() {
+        const totalSec = Math.max(0, Math.floor((Date.now() - start) / 1000));
+        dEl.textContent = pad(totalSec / 86400);
+        hEl.textContent = pad((totalSec % 86400) / 3600);
+        mEl.textContent = pad((totalSec % 3600) / 60);
+        sEl.textContent = pad(totalSec % 60);
       }
 
-      function renderElapsed() {
-        const diffSec = Math.max(0, Math.floor((Date.now() - startMs) / 1000));
-        const days = Math.floor(diffSec / 86400);
-        const hours = Math.floor((diffSec % 86400) / 3600);
-        const mins = Math.floor((diffSec % 3600) / 60);
-        const secs = diffSec % 60;
-
-        if (elDays) elDays.textContent = pad(days);
-        if (elHours) elHours.textContent = pad(hours);
-        if (elMins) elMins.textContent = pad(mins);
-        if (elSecs) elSecs.textContent = pad(secs);
-      }
-
-      renderElapsed();
-      setInterval(renderElapsed, 1000);
+      update();
+      setInterval(update, 1000);
     })();
   </script>
 </body>
