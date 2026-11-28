@@ -14,11 +14,11 @@ Foco em estabilidade de filas, isolamento de memória CPU/GPU e *frame pacing* p
 ![Arch](https://img.shields.io/badge/Arch-x86--64-374151?style=for-the-badge)
 ![GPU](https://img.shields.io/badge/Target-AMD_RDNA_2-dc2626?style=for-the-badge)
 ![Build](https://img.shields.io/badge/Build-0.3.0--alpha-0ea5e9?style=for-the-badge)
-![Dev Window](https://img.shields.io/badge/Janela_Ativa-~3_Dias_(Pré--EXE)-22c55e?style=for-the-badge)
+![Dev Window](https://shields.io)
 
 </div>
 
-> **Repositório Privado:** Código 100% autoral em desenvolvimento incremental, com commits atômicos e validação contínua em hardware real. Resultados práticos já vinham sendo obtidos bem antes do vazamento do `.exe`, completando agora cerca de **3 dias** na janela de desenvolvimento/testes após a liberação dos arquivos.
+> **Repositório Privado:** Código 100% autoral em desenvolvimento incremental, com commits atômicos e validação contínua em hardware real. Resultados práticos já vinham sendo obtidos bem antes do vazamento do `.exe`, completando agora cerca de **5 dias** na janela de desenvolvimento/testes após a liberação dos arquivos.
 
 ### Contador de Tempo em Desenvolvimento
 
@@ -77,3 +77,4 @@ VexEngine-VI/
 ├── cli/         # Ponto de entrada e preparação para integração com VexLauncher
 ├── config/      # Arquivos de configuração (ex.: target_fps, caminhos de cache)
 └── README.md    # Documentação técnica e registro de evolução
+```
