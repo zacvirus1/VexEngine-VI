@@ -5,15 +5,15 @@
 **Motor e camada de execução experimental de baixo nível (DirectX 12 / x86-64)**  
 Foco em estabilidade de filas, isolamento de memória CPU/GPU e *frame pacing* previsível.
 
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=16&pause=1200&color=38BDF8&center=true&vCenter=true&width=700&lines=DirectX+12+%2F+x86-64+Low-Level+Execution+Engine;Menus+Fluidos+%7C+Cena+Inicial:+2-5+FPS+(~14%25+VRAM+%2F+~16GB+RAM);Foco:+Isolamento+de+Copy-Back%2C+Filas+Async+e+30+%E2%86%92+60+FPS)](https://git.io/typing-svg)
+[![Typing SVG](https://demolab.com)](https://git.io)
 
 <br />
 
-![Status](https://img.shields.io/badge/Status-Em_Desenvolvimento-f59e0b?style=for-the-badge)
-![Graphics](https://img.shields.io/badge/Graphics-DirectX_12-0078D4?style=for-the-badge)
-![Arch](https://img.shields.io/badge/Arch-x86--64-374151?style=for-the-badge)
-![GPU](https://img.shields.io/badge/Target-AMD_RDNA_2-dc2626?style=for-the-badge)
-![Build](https://img.shields.io/badge/Build-0.3.0--alpha-0ea5e9?style=for-the-badge)
+![Status](https://shields.io)
+![Graphics](https://shields.io)
+![Arch](https://shields.io)
+![GPU](https://shields.io)
+![Build](https://shields.io)
 ![Dev Window](https://shields.io)
 
 </div>
